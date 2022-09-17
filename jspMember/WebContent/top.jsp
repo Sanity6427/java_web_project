@@ -16,10 +16,10 @@
 	<div align="center">
 	<table border="1" width="700" height="500">
 		<tr>
-			<th>로그인</th>
+			<th><a href="login.jsp">로그인</a></th>
 			<th><a href="javascript:checkMember()">회원가입</a></th>
 			<th><a href="memberAll.jsp">회원보기</a></th>
-			<th>회원찾기</th>
+			<th><a href="memberAll.jsp?mode=find">회원찾기</a></th>
 		</tr>
 		<tr height="80%">
 			<td colspan="4">
