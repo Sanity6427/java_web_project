@@ -10,6 +10,7 @@
 							"width=640, height=400")
 		}
 	</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<div align="center">
@@ -17,7 +18,7 @@
 		<tr>
 			<th>로그인</th>
 			<th><a href="javascript:checkMember()">회원가입</a></th>
-			<th>회원보기</th>
+			<th><a href="memberAll.jsp">회원보기</a></th>
 			<th>회원찾기</th>
 		</tr>
 		<tr height="80%">
