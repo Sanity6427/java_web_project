@@ -46,7 +46,8 @@
 			</tr>
 			<tr bgcolor="yellow">
 				<td colspan="4" align="right">
-					<input type="button" value="글수정">
+					<input type="button" value="글수정"
+								onclick="window.location='updateForm.jsp?num=<%=dto.getNum()%>'">
 					<input type="button" value="글삭제"
 								onclick="window.location='deleteForm.jsp?num=<%=dto.getNum()%>'">
 					<input type="button" value="글목록" 

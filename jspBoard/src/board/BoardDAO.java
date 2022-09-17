@@ -117,7 +117,7 @@ public class BoardDAO {
 			if(dto.getPasswd().equals(passwd)) {
 				try {	
 					con = DriverManager.getConnection(url, user, pass);
-					String sql = "deletefrom board where num = ?";
+					String sql = "delete from board where num = ?";
 					ps = con.prepareStatement(sql);
 					ps.setInt(1, num);
 					int res = ps.executeUpdate();
@@ -131,6 +131,31 @@ public class BoardDAO {
 				return -1;
 			}
 		
+	}
+	
+	
+	public int updateBoard(BoardDTO dto)
+							throws SQLException {
+		BoardDTO dto2 = getBoard(dto.getNum(), "password");
+		if(dto2.getPasswd().equals(dto.getPasswd())) {
+			try {	
+				con = DriverManager.getConnection(url, user, pass);
+				String sql = "update board set subject=?, email=?, content=? where num = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, dto.getSubject());
+				ps.setString(2, dto.getEmail());
+				ps.setString(3, dto.getContent());
+				ps.setInt(4, dto.getNum());
+				int res = ps.executeUpdate();
+				return res;
+			}finally {
+				if (rs != null) rs.close();
+				if (ps != null) ps.close();
+				if (con != null) con.close();
+			}
+		}else {
+			return -1;
+		}
 	}
 }
 
