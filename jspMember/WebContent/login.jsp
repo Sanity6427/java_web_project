@@ -2,11 +2,37 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="top.jsp"%>
 <script type="text/javascript">
+	function loginCheck(){
+		if (f.id.value==""){
+			alert("아이디를 입력해 주세요!!")
+			f.id.focus()
+			return
+		}
+		if (f.passwd.value==""){
+			alert("비밀번호를 입력해 주세요!!")
+			f.passwd.focus()
+			return
+		}
+		document.f.submit()
+	}
 	function searchMember(mode){
 		window.open("searchMember.jsp?mode="+mode, "", 
 		"width=640, height=400")
 	}
 </script>
+<%
+		Cookie[] ck = request.getCookies();
+		String value = null;
+		if (ck != null || ck.length != 0){
+			for(int i=0; i<ck.length; ++i){
+				String name = ck[i].getName();
+				if (name.trim().equals("saveId")){
+					value = ck[i].getValue();
+					break;
+				}
+			}
+		}
+%>
 <!-- login.jsp-->
 <div align="center">
 <br>
@@ -23,14 +49,22 @@
 				width="28" height="11" border="0" alt="아이디">&nbsp;&nbsp;
 			</td>
 			<td width="40%">
+<%		if (value==null){ %>			
 				<input type="text" name="id" tabindex="1">
+<%		}else { %>
+				<input type="text" name="id" tabindex="1" value="<%=value%>">
+<%		} %>				
 			</td>
 			<td rowspan="2" width="30%" valign="middle">
 				<a href="javascript:loginCheck()">
 					<img src="img/bt_login.gif" border="0" alt="로그인"  tabindex="3">&nbsp;&nbsp;<br>
 				</a>
 				<nobr>
+<%		if (value==null){ %>				
 					<input type="checkbox" name="saveId">
+<%		}else { %>
+					<input type="checkbox" name="saveId" checked>
+<%		} %>					
 					<font face="굴림" size="2">아이디 기억하기</font>
 				</nobr>
 			</td>

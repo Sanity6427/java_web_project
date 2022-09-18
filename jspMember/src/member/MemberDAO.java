@@ -18,6 +18,11 @@ public class MemberDAO {
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
 	}
+	
+	public static final int OK = 0;
+	public static final int NOT_ID = 1;
+	public static final int NOT_PWD = 2;
+	public static final int ERROR = -1;
 
 	public MemberDAO() {
 		try {
@@ -140,6 +145,22 @@ public class MemberDAO {
 		}
 	}
 	
+	public MemberDTO getMember(String id) throws SQLException{
+		try {
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "select * from jsp_member where id=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			List<MemberDTO> list = makeList(rs);
+			return list.get(0);
+		}finally {
+			if (rs != null) rs.close();
+			if (ps != null) ps.close();
+			if (con != null) con.close();
+		}
+	}
+	
 	public int updateMember(MemberDTO dto) throws SQLException{
 		try {
 			con = DriverManager.getConnection(url, user, pass);
@@ -210,6 +231,36 @@ public class MemberDAO {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
 			if (con != null) con.close();
+		}
+	}
+	
+	public int loginCheck(String id, String passwd){
+		try {
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "select passwd from jsp_member where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				String dbPass = rs.getString(1);
+				if(dbPass.trim().equals(passwd)) {
+					return OK;
+				}else {
+					return NOT_PWD;
+				}
+			}else {
+				return NOT_ID;
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+			return ERROR;	
+		}finally {
+		try {
+			if (rs != null) rs.close();
+			if (ps != null) ps.close();
+			if (con != null) con.close();
+		}catch(SQLException e) {}
+		
 		}
 	}
 }
