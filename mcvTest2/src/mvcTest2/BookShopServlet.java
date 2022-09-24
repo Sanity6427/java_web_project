@@ -3,6 +3,7 @@ package mvcTest2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,9 +28,20 @@ public class BookShopServlet extends HttpServlet{
 		
 		if(cmd.equals("CHK")) {
 			
-			session.setAttribute("cart", list);
+			Hashtable<String, BookDTO> ht = new Hashtable<>();
+			for(BookDTO dto : list) {
+				if(ht.containsKey(dto.getTitle())) {
+					BookDTO dto2 = ht.get(dto.getTitle());
+					dto2.setQty(dto2.getQty() + dto.getQty());
+				}else {
+					ht.put(dto.getTitle(), dto);
+				}
+			}
 			
-			resp.sendRedirect("order.jsp");
+			req.setAttribute("result", ht);
+			
+			RequestDispatcher view = req.getRequestDispatcher("result.jsp");
+			view.forward(req,resp);
 			
 		}else {
 			if(cmd.equals("ADD")) {

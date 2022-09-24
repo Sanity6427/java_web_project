@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="board.*" %>    
+<%@ page import="mvcBoard.*" %>    
 <!-- content.jsp -->
-<jsp:useBean id="bdao" class="board.BoardDAO"/>
+<jsp:useBean id="bdao" class="mvcBoard.BoardDAO"/>
 <%
 		String num = request.getParameter("num");
 		if (num == null || num.trim().equals("")){

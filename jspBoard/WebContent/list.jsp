@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="java.util.*, board.*" %>    
+<%@ page import="java.util.*,mvcBoard.*" %>    
 <!-- list.jsp -->
-<jsp:useBean id="bdao" class="board.BoardDAO" />
+<jsp:useBean id="bdao" class="mvcBoard.BoardDAO" />
 <html>
 <head>
 	<title>게시글목록</title>

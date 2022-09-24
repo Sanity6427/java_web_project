@@ -2,10 +2,6 @@
 	pageEncoding="EUC-KR"%>
 <%
 		String num = request.getParameter("num");
-		if (num == null || num.trim().equals("")){
-			response.sendRedirect("list.jsp");
-			return;
-		}
 	%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +12,7 @@
 <body>
 	<div align="center">
 		<b>글삭제</b>
-		<form name="f" action="deletePro.jsp" method="post">
+		<form name="f" action="deletePro_board.do" method="post">
 			<input type="hidden" name="num" value="<%=num %>"/>
 			<table border="1" width="300">
 				<tr bgcolor="yellow">
@@ -29,7 +25,7 @@
 				<tr bgcolor="yellow">
 					<td align="center"><input type="submit" value="글삭제"> 
 					<input type="button" value="글목록"
-							onclick="window.location='list.jsp'"></td>
+							onclick="window.location='list_board.do'"></td>
 				</tr>
 			</table>
 		</form>

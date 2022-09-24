@@ -7,13 +7,15 @@
 <head>
 <%
 	List<BookDTO> list = (List)session.getAttribute("list");
+	int total = 0;
 	if(list != null && list.size() != 0){
+		
 %>
 </head>
 <body>
 <h2>주 문 내 역 서</h2>
 <hr color="green" width="300">
-<table border="0" width="100%">
+<table border="1" width="100%">
 	<tr>
 		<th>도서명</th>
 		<th>작가</th>
@@ -24,7 +26,8 @@
 	</tr>
 	
 <%
-		for(BookDTO dto : list){%>			
+		for(BookDTO dto : list){%>		
+				
 	<tr>
 		<td><%=dto.getTitle()%></td>
 		<td><%=dto.getAuthor()%></td>
@@ -33,8 +36,11 @@
 		<td><%=dto.getPrice() * dto.getQty()%></td>
 		<td>비고</td>
 	</tr>
+	<%		total =  total + dto.getPrice(); } %>
 	<% } %>
-	<% } %>
+	<tr>
+		<td colspan="6">총가격 : <%=total%></td>
+	</tr>
 </table>
 </body>
 </html>

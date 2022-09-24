@@ -1,8 +1,8 @@
-<%@page import="board.BoardDTO"%>
+<%@page import="mvcBoard.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- updateForm.jsp -->
-<jsp:useBean id="bdao" class="board.BoardDAO"/>
+<jsp:useBean id="bdao" class="mvcBoard.BoardDAO"/>
 
 <%
 	String num = request.getParameter("num");

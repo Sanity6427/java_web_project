@@ -5,8 +5,8 @@
 	request.setCharacterEncoding("EUC-KR");
 	
 %>
-<jsp:useBean id="bdao" class="board.BoardDAO"/>
-<jsp:useBean id="bdto" class="board.BoardDTO"/>
+<jsp:useBean id="bdao" class="mvcBoard.BoardDAO"/>
+<jsp:useBean id="bdto" class="mvcBoard.BoardDTO"/>
 <jsp:setProperty name="bdto" property="*"/>
 <% 
 	if(bdto.getWriter()==null || bdto.getWriter().trim().equals("")){

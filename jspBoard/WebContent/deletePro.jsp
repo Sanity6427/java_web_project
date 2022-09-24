@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- deletePro.jsp -->
-<jsp:useBean id="bdao" class="board.BoardDAO" />
+<jsp:useBean id="bdao" class="mvcBoard.BoardDAO" />
 <%
 		String num = request.getParameter("num");
 		String passwd = request.getParameter("passwd");
